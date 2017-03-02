@@ -4,7 +4,7 @@
 #include<stdio.h>
 char inputstr[4096]={0};
 char hello_calc[]="calc:try to become a cli calculator! It would be very simple!\r\n\
-		   type 'help' for supported functions\n";
+type 'help' for supported functions\n";
 char help[]="help\n";
 
 void  Calc_StartWork()
@@ -12,7 +12,7 @@ void  Calc_StartWork()
     int len = 0;
     printf("%s",hello_calc);
     
-    printf("%s",help);
+    //printf("%s",help);
 
     while(1)
     {
@@ -37,7 +37,7 @@ int Calc_AnalyzeStr(inutstr,len)
     int ret = 0;
   if(strncmp(inputstr,"help",4) == 0)
   {
-   printf("%s","now no help");
+   printf("%s","now no help\n");
    return 0;
   }
   else if(strncmp(inputstr,"exit",4) ==0)
