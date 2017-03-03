@@ -55,7 +55,7 @@ int Calc_AnalyzeInput(char* inutstr,char** ppostfix)
   {
     exit(0);
   }
-  else if(Calc_IsAllWhiteSpace(inputstr))
+  else if(Calc_IsAllWihetSpace(inputstr))
   {
     *ppostfix = NULL;
     return 0;
