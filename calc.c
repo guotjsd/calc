@@ -42,9 +42,9 @@ g_stack_symbols--;
  *(pStack+g_stack_symbols)=0;
  return symbolToPop;
 }
-// +   -   *  /   (  )  ^  !  !!
-// 2b 2d   2a 2f  28 29 5e 21 
-// +2  0   0x15 10 0x51 50 0  
+// +   -   *  /      (  )  ^  !  !!
+// 2b 2d   2a 2f    28  29 5e 21 
+// +2  0   0x15 10 0x31 30 -0x10  
 int Calc_OperatorWeigh(char operator)
 {
 switch (operator)
@@ -60,12 +60,12 @@ switch (operator)
 	return operator +0x10;
 
 	case '(':
-	return  operator +0x51;
+	return  operator +0x31;
 	case ')':
-	return  operator + 0x50;
+	return  operator + 0x30;
 
 	case '^':
-	return  operator;
+	return  operator-0x10;
 	default:
 	return operator;
 }
