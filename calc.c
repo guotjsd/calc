@@ -23,6 +23,58 @@ char help[]="help\n";
 // now do not support it 
 char assoc[][32]={"help","print","exit","sin","cos"};
 
+
+
+int g_stack_symbols=0;
+
+int Stack_Push(char* pStack, char symbol)
+{
+int index = 0;
+*(pStack +g_stack_symbols) = symbol;
+g_stack_symbols++;
+return g_stack_symbols;
+}
+int Stack_Pop(char* pStack)
+{
+char symbolToPop = 0;
+g_stack_symbols--;
+ symbolToPop = *(pStack + g_stack_symbols );
+ *(pStack+g_stack_symbols)=0;
+ return symbolToPop;
+}
+// +   -   *  /   (  )  ^  !  !!
+// 2b 2d   2a 2f  28 29 5e 21 
+// +2  0   0x15 10 0x51 50 0  
+int Calc_OperatorWeigh(char operator)
+{
+switch (operator)
+{
+	case '+':
+	return  operator+2;
+	case '-':
+        return  operator;
+
+	case '*':
+	return operator+ 0x15;
+	case '/':
+	return operator +0x10;
+
+	case '(':
+	return  operator +0x51;
+	case ')':
+	return  operator + 0x50;
+
+	case '^':
+	return  operator;
+	default:
+	return operator;
+}
+}
+int Calc_GetOperatorPriority(char operator1,char operator2)
+{
+return Calc_OperatorWeigh(operator1)-Calc_OperatorWeigh(operator2);
+}
+//while(Calc_
 int Calc_IsAllWhiteSpace(char* pInput)
 {
 for(;*pInput == ' '; pInput++)
@@ -82,6 +134,7 @@ int Calc_CleanUp()
  memset(inputStr, 0, 4096);
  memset(postStr, 0, 4096);
  memset(postexp, 0, 4096);
+ g_stack_symbols = 0;
 
 return 0;
 }
